@@ -45,6 +45,7 @@ public class ShowExcel extends HttpServlet {
 		RequestDispatcher view = getServletContext().getRequestDispatcher("/jsp/Nombre.jsp");
 		
 		request.setAttribute("array", ExcelAcces.list());
+		request.setAttribute("arraytable", ExcelAcces.getExcelTable());
 		ExcelAcces.read();
 		
 		view.forward(request, response);

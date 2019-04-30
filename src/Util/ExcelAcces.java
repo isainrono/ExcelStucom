@@ -15,6 +15,7 @@ public class ExcelAcces {
 	static String rutaArchivo = "C:\\Users\\alu2017440\\eclipse-workspace\\JspProject1\\src\\Files\\excel1.xlsx";
 	static int hoja = 0;
 	static ArrayList<String> excellist = new ArrayList<>();
+	static ArrayList<ArrayList<String>> excelTable;
 
 	
 	public static void read() {
@@ -35,10 +36,12 @@ public class ExcelAcces {
 			Iterator<Row> rowIterator = sheet.iterator();
 
 			Row row;
-			//mat 
+			//mat
+			excelTable = new ArrayList<ArrayList<String>>();
+			
 			// se recorre cada fila hasta el final
 			while (rowIterator.hasNext()) {
-				//arrayL nueva
+				ArrayList <String>fila = new ArrayList<String>();
 				row = rowIterator.next();
 				//se obtiene las celdas por fila
 				Iterator<Cell> cellIterator = row.cellIterator();
@@ -51,9 +54,11 @@ public class ExcelAcces {
 					if(cell.getCellType() == Cell.CELL_TYPE_STRING) {
 						System.out.print(cell.getStringCellValue()+" | ");
 						excellist.add(cell.getStringCellValue());
+						fila.add(cell.getStringCellValue());
 					} else {
 						System.out.print(cell.getNumericCellValue() + " | ");
 						excellist.add(String.valueOf(cell.getNumericCellValue()));
+						fila.add(String.valueOf(cell.getNumericCellValue()));
 					}
 					
 					
@@ -61,6 +66,7 @@ public class ExcelAcces {
 				for (int i = 0; i < excellist.size(); i++) {
 					System.out.print(excellist.get(i));
 				}
+				excelTable.add(fila);
 				System.out.println("");
 				//add a matriz
 			}
@@ -74,6 +80,14 @@ public class ExcelAcces {
 	public static ArrayList<String> list() {
 		return excellist;
 	}
+
+	public static ArrayList<ArrayList<String>> getExcelTable() {
+		return excelTable;
+	}
+
+
+	
+	
 	
 
 	
