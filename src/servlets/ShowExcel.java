@@ -46,6 +46,8 @@ public class ShowExcel extends HttpServlet {
 		
 		request.setAttribute("array", ExcelAcces.list());
 		request.setAttribute("arraytable", ExcelAcces.getExcelTable());
+		request.setAttribute("numHojas", ExcelAcces.getNumHojas());
+		request.setAttribute("arrayhojas", ExcelAcces.getHojasName());
 		ExcelAcces.read();
 		
 		view.forward(request, response);

@@ -16,6 +16,8 @@ public class ExcelAcces {
 	static int hoja = 0;
 	static ArrayList<String> excellist = new ArrayList<>();
 	static ArrayList<ArrayList<String>> excelTable;
+	static int numHojas = 0;
+	static ArrayList<String> hojasName = new ArrayList<String>();
 
 	
 	public static void read() {
@@ -26,11 +28,14 @@ public class ExcelAcces {
 			
 			//Obetener el numero de hojas que tiene el archivo
 			int countSheet = worbook.getActiveSheetIndex();
-			System.out.println(countSheet);
+			numHojas = worbook.getActiveSheetIndex();
+			
+			for (int i = 0; i < numHojas; i++) {
+				hojasName.add(worbook.getSheetAt(i).getSheetName());
+			}
 			
 			//obtener la hoja que se va leer
 			XSSFSheet sheet = worbook.getSheetAt(hoja);
-			
 			
 			//obtener todas las filas de la hoja excel
 			Iterator<Row> rowIterator = sheet.iterator();
@@ -83,6 +88,22 @@ public class ExcelAcces {
 
 	public static ArrayList<ArrayList<String>> getExcelTable() {
 		return excelTable;
+	}
+
+	public static int getNumHojas() {
+		return numHojas;
+	}
+
+	public static void setNumHojas(int numHojas) {
+		ExcelAcces.numHojas = numHojas;
+	}
+
+	public static ArrayList<String> getHojasName() {
+		return hojasName;
+	}
+
+	public static void setHojasName(ArrayList<String> hojasName) {
+		ExcelAcces.hojasName = hojasName;
 	}
 
 
